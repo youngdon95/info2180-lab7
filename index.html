@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script>
+       <script>
+           window.onload = function() {
+             document.getElementById("search").addEventListener(
+                             "click", function(){
+                                 if (document.getElementById("myText").value == "definition")
+                                 {
+                                     
+                                     new Ajax.Request("request.php?q=definition",
+                                     {
+                                        method: "get",
+                                        onSuccess: doSomethingWithTheResult
+                                    });
+                                }
+                                 if (document.getElementById("myText").value == "bar")
+                                 {
+                                   
+                                     new Ajax.Request("request.php?q=bar",
+                                    {
+                                     method: "get",
+                                    onSuccess: doSomethingWithTheResult
+                                    });
+                                 }
+                                  
+                                  if (document.getElementById("myText").value == "ajax")
+                                 {
+                                    
+                                     new Ajax.Request("request.php?q=ajax",
+                                    {
+                                        method: "get",
+                                        onSuccess: doSomethingWithTheResult
+                                    });
+                                 }
+                                  
+                                  
+                // go out and get result from request.php
+                 new Ajax.Request("request.php?q=x",
+                       {
+                          method: "get",
+                          onSuccess: doSomethingWithTheResult
+                         });
+                  
+           });
+          
+function doSomethingWithTheResult(data) {
+                          alert(data.responseText);
+                        }
+           }                        
+       </script>
+        <title>Ajax Demo of Seach Button</title>
+    </head>
+    <body>
+            <p> Search for one of the following (bar, definition, ajax)</p>
+            <button id="search">Search</button>
+            <div><input type="text" id="myText" value=""></div>
+    </body>
+</html>
